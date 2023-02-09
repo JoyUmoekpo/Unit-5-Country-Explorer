@@ -7,7 +7,14 @@ const OptionDisplay = () => {
     console.log(currentPotentials);
     return (
         <div className="stack">
-            OptionDisplay
+            {currentPotentials.map((e, i) => {
+                return (
+                    <h2
+                        key={e.name.official} className="country-option">
+                        {e.name.common}
+                    </h2>
+                );
+            })}
         </div>
     );
 };
