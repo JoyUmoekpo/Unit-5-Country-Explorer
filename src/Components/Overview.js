@@ -9,7 +9,7 @@ const Overview = () => {
 			<h1>{currentDisplay.name.official}</h1>
 			<h2>"{currentDisplay.name.common}"</h2>
 			{currentDisplay.flags ? (
-				<img src={currentDisplay.flags.svg} />
+				<img src={currentDisplay.flags.svg} alt="Selected Country's Flag"/>
 			) : (
 				"(No Flags Found)"
 			)}
@@ -30,7 +30,7 @@ const Overview = () => {
 					<td>{currentDisplay.region}</td>
 				</tr>
 				<tr>
-					<td>Capitol: </td>
+					<td>Capital: </td>
 					{currentDisplay.capital.map((e) => (
 						<td>{e}</td>
 					))}
@@ -40,19 +40,13 @@ const Overview = () => {
 					<td>{currentDisplay.population}</td>
 				</tr>
 				<tr>
-					<td>Language: </td>
-					<td>{currentDisplay.languages.lit}</td>
+					<td>Starting Weekday: </td>
+					<td>{currentDisplay.startOfWeek}</td>
 				</tr>
-				<tr>
-					<td>Timezones: </td>
-					{currentDisplay.timezones.map((e) => (
-						<td>{e}</td>
-					))}
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+        <tr>
+          <td>Google Maps Link: </td>
+          <td>{currentDisplay.maps.googleMaps}</td>
+        </tr>
 			</table>
 		</div>
 	);

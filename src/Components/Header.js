@@ -36,7 +36,7 @@ const Header = () => {
 							.get(`https://restcountries.com/v3.1/name/${input}`)
 							.then((res) => {
 								console.log(res.data);
-                                dispatch(deleteDisplayCountry());
+								dispatch(deleteDisplayCountry());
 								dispatch(deletePotentialCountries());
 								dispatch(setPotentialCountries(res.data));
 							})
