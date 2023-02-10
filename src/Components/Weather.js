@@ -29,7 +29,7 @@ const Weather = () => {
 			.catch(function (error) {
 				console.error(error);
 			});
-	}, []);
+	}, [latitude, longitude]);
 
 	return (
 		<div>
