@@ -1,19 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectDisplay } from "../redux/slices/displayCountrySlice";
+import { setLoadingFalse, setLoadingTrue } from "../redux/slices/loadingSlice";
 
 const Weather = () => {
 	const [weather, setWeather] = useState();
 	let display = useSelector(selectDisplay);
+	const dispatch = useDispatch();
+
 	let latitude = display.capitalInfo.latlng[0];
 	let longitude = display.capitalInfo.latlng[1];
 
 	useEffect(() => {
+		dispatch(setLoadingTrue());
 		const options = {
 			method: "GET",
 			url: "https://weatherapi-com.p.rapidapi.com/current.json",
-            params: { q: `${latitude}, ${longitude}` },
+			params: { q: `${latitude}, ${longitude}` },
 			headers: {
 				"X-RapidAPI-Key": "41fcae3ee6mshf0e229e9e01ab0bp166308jsne9f57a0ecfda",
 				"X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
@@ -24,12 +28,15 @@ const Weather = () => {
 			.request(options)
 			.then(function (response) {
 				console.log(response.data);
-                setWeather(response.data);
+				setWeather(response.data);
+				dispatch(setLoadingFalse());
 			})
 			.catch(function (error) {
 				console.error(error);
+				dispatch(setLoadingFalse());
+				alert("No weather data found.");
 			});
-	}, [latitude, longitude]);
+	}, [latitude, longitude, dispatch]);
 
 	return (
 		<div>
