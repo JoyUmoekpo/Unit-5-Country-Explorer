@@ -8,7 +8,11 @@ const Overview = () => {
 		<div className="stack">
 			<h1>{currentDisplay.name.official}</h1>
 			<h2>"{currentDisplay.name.common}"</h2>
-			<h2>{currentDisplay.flags.png}</h2>
+			{currentDisplay.flags ? (
+				<img src={currentDisplay.flags.svg} />
+			) : (
+				"(No Flags Found)"
+			)}
 			<table className="overview-table">
 				<tr>
 					<td>Alt. Spellings: </td>
